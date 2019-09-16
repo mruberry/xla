@@ -19,6 +19,20 @@ import sys
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
+DEBUG = _check_env_flag('DEBUG')
+IS_WINDOWS = (platform.system() == 'Windows')
+IS_DARWIN = (platform.system() == 'Darwin')
+IS_LINUX = (platform.system() == 'Linux')
+
+
+def make_relative_rpath(path):
+  if IS_DARWIN:
+    return '-Wl,-rpath,@loader_path/' + path
+  elif IS_WINDOWS:
+    return ''
+  else:
+    return '-Wl,-rpath,$ORIGIN/' + path
+
 
 def _check_env_flag(name, default=''):
   return os.getenv(name, default).upper() in ['ON', '1', 'YES', 'TRUE', 'Y']
@@ -100,6 +114,22 @@ class Build(BuildExtension):
         print('Failed to build tests: {}'.format(cmd), file=sys.stderr)
         sys.exit(1)
 
+version = os.getenv('TORCH_XLA_VERSION', '0.1')
+if _check_env_flag('VERSIONED_XLA_BUILD', default='0'):
+  try:
+    sha = subprocess.check_output(['git', 'rev-parse', 'HEAD'],
+                                  cwd=base_dir).decode('ascii').strip()
+    version += '+' + sha[:7]
+  except Exception:
+    pass
+
+# Generate version info (torch_xla.__version__)
+print('Building torch_xla version: {}'.format(version))
+version_path = os.path.join(base_dir, 'torch_xla', 'version.py')
+with open(version_path, 'w') as f:
+  f.write("__version__ = '{}'\n".format(version))
+  f.write("__debug__ = {}\n".format(DEBUG)
+
 
 # Generate the code before globbing!
 generate_code_cmd = [os.path.join(base_dir, 'scripts', 'generate_code.sh')]
@@ -148,20 +178,6 @@ library_dirs.append(lib_path)
 
 extra_link_args = []
 
-DEBUG = _check_env_flag('DEBUG')
-IS_WINDOWS = (platform.system() == 'Windows')
-IS_DARWIN = (platform.system() == 'Darwin')
-IS_LINUX = (platform.system() == 'Linux')
-
-
-def make_relative_rpath(path):
-  if IS_DARWIN:
-    return '-Wl,-rpath,@loader_path/' + path
-  elif IS_WINDOWS:
-    return ''
-  else:
-    return '-Wl,-rpath,$ORIGIN/' + path
-
 
 extra_compile_args = [
     '-std=c++14',
@@ -184,15 +200,6 @@ if DEBUG:
     extra_link_args += ['-O0', '-g']
 
 extra_link_args += ['-lxla_computation_client']
-
-version = os.getenv('TORCH_XLA_VERSION', '0.1')
-if _check_env_flag('VERSIONED_XLA_BUILD', default='0'):
-  try:
-    sha = subprocess.check_output(['git', 'rev-parse', 'HEAD'],
-                                  cwd=base_dir).decode('ascii').strip()
-    version += '+' + sha[:7]
-  except Exception:
-    pass
 
 setup(
     name='torch_xla',
