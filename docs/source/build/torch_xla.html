@@ -1,0 +1,666 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>torch_xla &mdash; TorchXLA master documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!-- <link rel="stylesheet" href="_static/pygments.css" type="text/css" /> -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" type="text/css" />
+  <link rel="stylesheet" href="_static/css/pytorch_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+  <!-- Preload the theme fonts -->
+
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-book.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/IBMPlexMono/IBMPlexMono-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/FreightSans/freight-sans-medium-italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="_static/fonts/IBMPlexMono/IBMPlexMono-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+<!-- Preload the katex fonts -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Math-Italic.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Main-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size1-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size4-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size2-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Size3-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/fonts/KaTeX_Caligraphic-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+</head>
+
+<div class="container-fluid header-holder tutorials-header" id="header-holder">
+  <div class="container">
+    <div class="header-container">
+      <a class="header-logo" href="https://pytorch.org/" aria-label="PyTorch"></a>
+
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="https://pytorch.org/get-started">Get Started</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch.org/features">Features</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch.org/ecosystem">Ecosystem</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch.org/blog/">Blog</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch.org/tutorials">Tutorials</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch.org/docs/stable/index.html">Docs</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch.org/resources">Resources</a>
+          </li>
+
+          <li>
+            <a href="https://github.com/pytorch/pytorch">Github</a>
+          </li>
+        </ul>
+      </div>
+
+      <a class="main-menu-open-button" href="#" data-behavior="open-mobile-menu"></a>
+    </div>
+
+  </div>
+</div>
+
+
+<body class="pytorch-body">
+
+   
+
+    
+
+    <div class="table-of-contents-link-wrapper">
+      <span>Table of Contents</span>
+      <a href="#" class="toggle-table-of-contents" data-behavior="toggle-table-of-contents"></a>
+    </div>
+
+    <nav data-toggle="wy-nav-shift" class="pytorch-left-menu" id="pytorch-left-menu">
+      <div class="pytorch-side-scroll">
+        <div class="pytorch-menu pytorch-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          <div class="pytorch-left-menu-search">
+            
+
+            
+              
+              
+                <div class="version">
+                  master (0.1 )
+                </div>
+              
+            
+
+            
+
+
+  
+
+
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search Docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+            
+          </div>
+
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">torch_xla</a><ul>
+<li><a class="reference internal" href="#xla-devices">XLA devices</a></li>
+<li><a class="reference internal" href="#lazy-execution">Lazy execution</a></li>
+<li><a class="reference internal" href="#bfloat16-and-fp32">bFloat16 and fp32</a></li>
+<li><a class="reference internal" href="#contiguity-and-storage">Contiguity and storage</a></li>
+<li><a class="reference internal" href="#torchxla-classes-and-functions">TorchXLA classes and functions</a></li>
+<li><a class="reference internal" href="#module-torch_xla.core.xla_model">xla_model</a></li>
+<li><a class="reference internal" href="#module-torch_xla.distributed.parallel_loader">distributed</a></li>
+<li><a class="reference internal" href="#module-torch_xla.utils.utils">utils</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <div class="pytorch-container">
+      <div class="pytorch-page-level-bar" id="pytorch-page-level-bar">
+        <div class="pytorch-breadcrumbs-wrapper">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="pytorch-breadcrumbs">
+    
+      <li>
+        <a href="#">
+          
+            Docs
+          
+        </a> &gt;
+      </li>
+
+        
+      <li>torch_xla</li>
+    
+    
+      <li class="pytorch-breadcrumbs-aside">
+        
+            
+            <a href="_sources/torch_xla.rst.txt" rel="nofollow"><img src="_static/images/view-page-source-icon.svg"></a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+</div>
+        </div>
+
+        <div class="pytorch-shortcuts-wrapper" id="pytorch-shortcuts-wrapper">
+          Shortcuts
+        </div>
+      </div>
+
+      <section data-toggle="wy-nav-shift" id="pytorch-content-wrap" class="pytorch-content-wrap">
+        <div class="pytorch-content-left">
+
+        
+          
+          <div class="rst-content">
+          
+            <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
+             <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
+              
+  <div class="section" id="torch-xla">
+<h1>torch_xla<a class="headerlink" href="#torch-xla" title="Permalink to this headline">¶</a></h1>
+<p>PyTorch runs on TPUs with the <a class="reference external" href="https://github.com/pytorch/xla">torch_xla</a> package.</p>
+<div class="section" id="xla-devices">
+<h2>XLA devices<a class="headerlink" href="#xla-devices" title="Permalink to this headline">¶</a></h2>
+<p>The XLA device type defines virtual ‘xla’ devices backed by real hardware.
+‘xla:0’ is your machine’s CPU and is useful for testing.
+‘xla:1’ and above represent Cloud TPUs.</p>
+<p>XLA devices work like CUDA devices. Operations on an XLA tensor occur on its
+device and cross-device operations (other than copy) are not allowed.</p>
+</div>
+<div class="section" id="lazy-execution">
+<h2>Lazy execution<a class="headerlink" href="#lazy-execution" title="Permalink to this headline">¶</a></h2>
+<p>PyTorch usually runs operations immediately or ‘eagerly.’ XLA devices, however,
+executed lazily. Operations on XLA tensors are usually recorded in a graph,
+not executed, until a tensor’s values are needed. Deferring execution lets XLA
+reduce roundtrips to Cloud TPUs and optimize computation by reviewing multiple
+operations simultaneously. A series of operations might be fused into a single
+operation, for example.</p>
+</div>
+<div class="section" id="bfloat16-and-fp32">
+<h2>bFloat16 and fp32<a class="headerlink" href="#bfloat16-and-fp32" title="Permalink to this headline">¶</a></h2>
+<p>XLA devices can treat the ‘float’ datatype as <a class="reference external" href="https://cloud.google.com/blog/products/ai-machine-learning/bfloat16-the-secret-to-high-performance-on-cloud-tpus">bfloat16</a> by setting the
+‘XLA_USE_BF16’ environment variable. If set to 1, XLA ‘float’ tensors actually
+use bfloat16.</p>
+<p>On Cloud TPUs the ‘double’ datatype is treated as ‘float,’ so when
+‘XLA_USE_BF16=1’ the Cloud TPUs map ‘double’ to ‘float’ and ‘float’ to ‘bfloat16.’</p>
+</div>
+<div class="section" id="contiguity-and-storage">
+<h2>Contiguity and storage<a class="headerlink" href="#contiguity-and-storage" title="Permalink to this headline">¶</a></h2>
+<p>XLA tensors are always contiguous and, unlike CPU and CUDA tensors, have no
+notion of storage. Models should not assume any particular striding for XLA
+tensors.</p>
+</div>
+<div class="section" id="torchxla-classes-and-functions">
+<h2>TorchXLA classes and functions<a class="headerlink" href="#torchxla-classes-and-functions" title="Permalink to this headline">¶</a></h2>
+<p>TorchXLA defines some new classes and functions for managing XLA devices,
+performing distributed training, and taking optimizer steps. See its
+<a class="reference external" href="https://github.com/pytorch/xla/blob/master/API_GUIDE.md">API Guide</a> for examples of how to use this new functionality and run models
+on Cloud TPUs. The documentation for each of these classes and functions is
+below.</p>
+</div>
+<div class="section" id="module-torch_xla.core.xla_model">
+<span id="xla-model"></span><h2>xla_model<a class="headerlink" href="#module-torch_xla.core.xla_model" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="torch_xla.core.xla_model.is_xla_tensor">
+<code class="sig-prename descclassname">torch_xla.core.xla_model.</code><code class="sig-name descname">is_xla_tensor</code><span class="sig-paren">(</span><em class="sig-param">tensor</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torch_xla/core/xla_model.html#is_xla_tensor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torch_xla.core.xla_model.is_xla_tensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if tensor is on a XLA device, false otherwise.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="torch_xla.core.xla_model.get_xla_supported_devices">
+<code class="sig-prename descclassname">torch_xla.core.xla_model.</code><code class="sig-name descname">get_xla_supported_devices</code><span class="sig-paren">(</span><em class="sig-param">devkind=None</em>, <em class="sig-param">max_devices=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torch_xla/core/xla_model.html#get_xla_supported_devices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torch_xla.core.xla_model.get_xla_supported_devices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of all XLA devices.
+If devkind is specified the list is filtered to XLA devices in devkind.
+If max_devices is specified the list is truncated to max_devices.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="torch_xla.core.xla_model.xla_device">
+<code class="sig-prename descclassname">torch_xla.core.xla_model.</code><code class="sig-name descname">xla_device</code><span class="sig-paren">(</span><em class="sig-param">n=None</em>, <em class="sig-param">devkind=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torch_xla/core/xla_model.html#xla_device"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torch_xla.core.xla_model.xla_device" title="Permalink to this definition">¶</a></dt>
+<dd><p>If n is specified returns torch.device(‘xla:&lt;n&gt;’) and ignores devkind.
+If neither n nor devkind is specified returns torch.device(‘xla:0’).
+If n is not specified and devkind is specified, returns the lowest index
+xla device that is of the specified kind.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="torch_xla.core.xla_model.xla_real_devices">
+<code class="sig-prename descclassname">torch_xla.core.xla_model.</code><code class="sig-name descname">xla_real_devices</code><span class="sig-paren">(</span><em class="sig-param">devices</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torch_xla/core/xla_model.html#xla_real_devices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torch_xla.core.xla_model.xla_real_devices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of strings like [‘xla:0’, ‘xla:1’, …], returns a list
+mapping each string to its corresponding hardware, e.g. [‘CPU:0’, ‘TPU:0’, …].</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="torch_xla.core.xla_model.xla_replication_devices">
+<code class="sig-prename descclassname">torch_xla.core.xla_model.</code><code class="sig-name descname">xla_replication_devices</code><span class="sig-paren">(</span><em class="sig-param">local_devices</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torch_xla/core/xla_model.html#xla_replication_devices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torch_xla.core.xla_model.xla_replication_devices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of all XLA devices with the same hardware as the devices in
+‘local_devices.’
+Note: all devices in ‘local_devices’ must use the same hardware.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="torch_xla.core.xla_model.set_replication">
+<code class="sig-prename descclassname">torch_xla.core.xla_model.</code><code class="sig-name descname">set_replication</code><span class="sig-paren">(</span><em class="sig-param">device</em>, <em class="sig-param">devices</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torch_xla/core/xla_model.html#set_replication"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torch_xla.core.xla_model.set_replication" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the current thread’s device to device and sets replication devices
+to all XLA devices with the same hardware as those in ‘devices.’</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="torch_xla.core.xla_model.xrt_world_size">
+<code class="sig-prename descclassname">torch_xla.core.xla_model.</code><code class="sig-name descname">xrt_world_size</code><span class="sig-paren">(</span><em class="sig-param">defval=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torch_xla/core/xla_model.html#xrt_world_size"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torch_xla.core.xla_model.xrt_world_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the WORLD_SIZE environment variable, if defined, and defval
+otherwise.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="torch_xla.core.xla_model.get_ordinal">
+<code class="sig-prename descclassname">torch_xla.core.xla_model.</code><code class="sig-name descname">get_ordinal</code><span class="sig-paren">(</span><em class="sig-param">defval=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torch_xla/core/xla_model.html#get_ordinal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torch_xla.core.xla_model.get_ordinal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the ORDINAL environment variable, if defined, and defval
+otherwise.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="torch_xla.core.xla_model.is_master_ordinal">
+<code class="sig-prename descclassname">torch_xla.core.xla_model.</code><code class="sig-name descname">is_master_ordinal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/torch_xla/core/xla_model.html#is_master_ordinal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torch_xla.core.xla_model.is_master_ordinal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if this process or thread is the ‘master’ process or thread,
+false otherwise.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="torch_xla.core.xla_model.master_print">
+<code class="sig-prename descclassname">torch_xla.core.xla_model.</code><code class="sig-name descname">master_print</code><span class="sig-paren">(</span><em class="sig-param">s</em>, <em class="sig-param">fd=&lt;_io.TextIOWrapper name='&lt;stdout&gt;' mode='w' encoding='UTF-8'&gt;</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torch_xla/core/xla_model.html#master_print"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torch_xla.core.xla_model.master_print" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints s to fd on the master process or thread.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="torch_xla.core.xla_model.optimizer_step">
+<code class="sig-prename descclassname">torch_xla.core.xla_model.</code><code class="sig-name descname">optimizer_step</code><span class="sig-paren">(</span><em class="sig-param">optimizer</em>, <em class="sig-param">barrier=False</em>, <em class="sig-param">optimizer_args={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torch_xla/core/xla_model.html#optimizer_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torch_xla.core.xla_model.optimizer_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs an optimizer step.
+If barrier is true the step occurs immediately. If false it is lazily evaluated.
+See the TorchXLA API Guide for additional context.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-torch_xla.distributed.parallel_loader">
+<span id="distributed"></span><h2>distributed<a class="headerlink" href="#module-torch_xla.distributed.parallel_loader" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="torch_xla.distributed.parallel_loader.ParallelLoader">
+<em class="property">class </em><code class="sig-prename descclassname">torch_xla.distributed.parallel_loader.</code><code class="sig-name descname">ParallelLoader</code><span class="sig-paren">(</span><em class="sig-param">loader</em>, <em class="sig-param">batch_size</em>, <em class="sig-param">devices</em>, <em class="sig-param">prefetch_size=4</em>, <em class="sig-param">batchdim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torch_xla/distributed/parallel_loader.html#ParallelLoader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torch_xla.distributed.parallel_loader.ParallelLoader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multi-threaded data loader.</p>
+</dd></dl>
+
+<span class="target" id="module-torch_xla.distributed.data_parallel"></span><dl class="class">
+<dt id="torch_xla.distributed.data_parallel.DataParallel">
+<em class="property">class </em><code class="sig-prename descclassname">torch_xla.distributed.data_parallel.</code><code class="sig-name descname">DataParallel</code><span class="sig-paren">(</span><em class="sig-param">network</em>, <em class="sig-param">device_ids=None</em>, <em class="sig-param">batchdim=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torch_xla/distributed/data_parallel.html#DataParallel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torch_xla.distributed.data_parallel.DataParallel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs a model on multiple devices in a single process.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="torch_xla.distributed.data_parallel.ParallelLoader">
+<em class="property">class </em><code class="sig-prename descclassname">torch_xla.distributed.data_parallel.</code><code class="sig-name descname">ParallelLoader</code><span class="sig-paren">(</span><em class="sig-param">loader</em>, <em class="sig-param">devices</em>, <em class="sig-param">batchdim=0</em>, <em class="sig-param">fixed_batch_size=False</em>, <em class="sig-param">loader_prefetch_size=8</em>, <em class="sig-param">device_prefetch_size=4</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torch_xla/distributed/data_parallel.html#ParallelLoader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torch_xla.distributed.data_parallel.ParallelLoader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data loader for running multiple devices in a single process.</p>
+</dd></dl>
+
+<span class="target" id="module-torch_xla.distributed.xla_multiprocessing"></span><dl class="function">
+<dt id="torch_xla.distributed.xla_multiprocessing.spawn">
+<code class="sig-prename descclassname">torch_xla.distributed.xla_multiprocessing.</code><code class="sig-name descname">spawn</code><span class="sig-paren">(</span><em class="sig-param">fn</em>, <em class="sig-param">args=()</em>, <em class="sig-param">nprocs=None</em>, <em class="sig-param">join=True</em>, <em class="sig-param">daemon=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torch_xla/distributed/xla_multiprocessing.html#spawn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torch_xla.distributed.xla_multiprocessing.spawn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Spawns new processes for distributed training.
+Wraps torch.multiprocessing.spawn().
+See the API guide for additional context.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-torch_xla.utils.utils">
+<span id="utils"></span><h2>utils<a class="headerlink" href="#module-torch_xla.utils.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="torch_xla.utils.utils.SampleGenerator">
+<em class="property">class </em><code class="sig-prename descclassname">torch_xla.utils.utils.</code><code class="sig-name descname">SampleGenerator</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">sample_count</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/torch_xla/utils/utils.html#SampleGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#torch_xla.utils.utils.SampleGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>A helper class for consuming ‘sample’ or ‘fake’ data.
+Useful for validating model scripts.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+             </article>
+             
+            </div>
+            <footer>
+  
+
+  
+
+    <hr>
+
+  
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright &lt;copyright&gt;.
+
+    </p>
+  </div>
+    
+      <div>
+        Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+      </div>
+     
+
+</footer>
+
+          </div>
+        </div>
+
+        <div class="pytorch-content-right" id="pytorch-content-right">
+          <div class="pytorch-right-menu" id="pytorch-right-menu">
+            <div class="pytorch-side-scroll" id="pytorch-side-scroll-right">
+              <ul>
+<li><a class="reference internal" href="#">torch_xla</a><ul>
+<li><a class="reference internal" href="#xla-devices">XLA devices</a></li>
+<li><a class="reference internal" href="#lazy-execution">Lazy execution</a></li>
+<li><a class="reference internal" href="#bfloat16-and-fp32">bFloat16 and fp32</a></li>
+<li><a class="reference internal" href="#contiguity-and-storage">Contiguity and storage</a></li>
+<li><a class="reference internal" href="#torchxla-classes-and-functions">TorchXLA classes and functions</a></li>
+<li><a class="reference internal" href="#module-torch_xla.core.xla_model">xla_model</a></li>
+<li><a class="reference internal" href="#module-torch_xla.distributed.parallel_loader">distributed</a></li>
+<li><a class="reference internal" href="#module-torch_xla.utils.utils">utils</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  
+
+
+  
+
+     
+       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+         <script type="text/javascript" src="_static/jquery.js"></script>
+         <script type="text/javascript" src="_static/underscore.js"></script>
+         <script type="text/javascript" src="_static/doctools.js"></script>
+         <script type="text/javascript" src="_static/language_data.js"></script>
+     
+
+  
+
+  <script type="text/javascript" src="_static/js/vendor/popper.min.js"></script>
+  <script type="text/javascript" src="_static/js/vendor/bootstrap.min.js"></script>
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+  <!-- Begin Footer -->
+
+  <div class="container-fluid docs-tutorials-resources" id="docs-tutorials-resources">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 text-center">
+          <h2>Docs</h2>
+          <p>Access comprehensive developer documentation for PyTorch</p>
+          <a class="with-right-arrow" href="https://pytorch.org/docs/stable/index.html">View Docs</a>
+        </div>
+
+        <div class="col-md-4 text-center">
+          <h2>Tutorials</h2>
+          <p>Get in-depth tutorials for beginners and advanced developers</p>
+          <a class="with-right-arrow" href="https://pytorch.org/tutorials">View Tutorials</a>
+        </div>
+
+        <div class="col-md-4 text-center">
+          <h2>Resources</h2>
+          <p>Find development resources and get your questions answered</p>
+          <a class="with-right-arrow" href="https://pytorch.org/resources">View Resources</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-logo-wrapper">
+        <a href="https://pytorch.org/" class="footer-logo"></a>
+      </div>
+
+      <div class="footer-links-wrapper">
+        <div class="footer-links-col">
+          <ul>
+            <li class="list-title"><a href="https://pytorch.org/">PyTorch</a></li>
+            <li><a href="https://pytorch.org/get-started">Get Started</a></li>
+            <li><a href="https://pytorch.org/features">Features</a></li>
+            <li><a href="https://pytorch.org/ecosystem">Ecosystem</a></li>
+            <li><a href="https://pytorch.org/blog/">Blog</a></li>
+            <li><a href="https://pytorch.org/resources">Resources</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <ul>
+            <li class="list-title"><a href="https://pytorch.org/support">Support</a></li>
+            <li><a href="https://pytorch.org/tutorials">Tutorials</a></li>
+            <li><a href="https://pytorch.org/docs/stable/index.html">Docs</a></li>
+            <li><a href="https://discuss.pytorch.org" target="_blank">Discuss</a></li>
+            <li><a href="https://github.com/pytorch/pytorch/issues" target="_blank">Github Issues</a></li>
+            <li><a href="https://pytorch.slack.com" target="_blank">Slack</a></li>
+            <li><a href="https://github.com/pytorch/pytorch/blob/master/CONTRIBUTING.md" target="_blank">Contributing</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col follow-us-col">
+          <ul>
+            <li class="list-title">Follow Us</li>
+            <li>
+              <div id="mc_embed_signup">
+                <form
+                  action="https://twitter.us14.list-manage.com/subscribe/post?u=75419c71fe0a935e53dfa4a3f&id=91d0dccd39"
+                  method="post"
+                  id="mc-embedded-subscribe-form"
+                  name="mc-embedded-subscribe-form"
+                  class="email-subscribe-form validate"
+                  target="_blank"
+                  novalidate>
+                  <div id="mc_embed_signup_scroll" class="email-subscribe-form-fields-wrapper">
+                    <div class="mc-field-group">
+                      <label for="mce-EMAIL" style="display:none;">Email Address</label>
+                      <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Email Address">
+                    </div>
+
+                    <div id="mce-responses" class="clear">
+                      <div class="response" id="mce-error-response" style="display:none"></div>
+                      <div class="response" id="mce-success-response" style="display:none"></div>
+                    </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+
+                    <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_75419c71fe0a935e53dfa4a3f_91d0dccd39" tabindex="-1" value=""></div>
+
+                    <div class="clear">
+                      <input type="submit" value="" name="subscribe" id="mc-embedded-subscribe" class="button email-subscribe-button">
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </li>
+          </ul>
+
+          <div class="footer-social-icons">
+            <a href="https://www.facebook.com/pytorch" target="_blank" class="facebook"></a>
+            <a href="https://twitter.com/pytorch" target="_blank" class="twitter"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cookie-banner-wrapper">
+  <div class="container">
+    <p class="gdpr-notice">To analyze traffic and optimize your experience, we serve cookies on this site. By clicking or navigating, you agree to allow our usage of cookies. As the current maintainers of this site, Facebook’s Cookies Policy applies. Learn more, including about available controls: <a href="https://www.facebook.com/policies/cookies/">Cookies Policy</a>.</p>
+    <img class="close-button" src="_static/images/pytorch-x.svg">
+  </div>
+</div>
+
+  <!-- End Footer -->
+
+  <!-- Begin Mobile Menu -->
+
+  <div class="mobile-main-menu">
+    <div class="container-fluid">
+      <div class="container">
+        <div class="mobile-main-menu-header-container">
+          <a class="header-logo" href="https://pytorch.org/" aria-label="PyTorch"></a>
+          <a class="main-menu-close-button" href="#" data-behavior="close-mobile-menu"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-main-menu-links-container">
+      <div class="main-menu">
+        <ul>
+          <li>
+            <a href="#">Get Started</a>
+          </li>
+
+          <li>
+            <a href="#">Features</a>
+          </li>
+
+          <li>
+            <a href="#">Ecosystem</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch.org/blog/">Blog</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch.org/tutorials">Tutorials</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch.org/docs/stable/index.html">Docs</a>
+          </li>
+
+          <li>
+            <a href="https://pytorch.org/resources">Resources</a>
+          </li>
+
+          <li>
+            <a href="https://github.com/pytorch/pytorch">Github</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- End Mobile Menu -->
+
+  <script type="text/javascript" src="_static/js/vendor/anchor.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      mobileMenu.bind();
+      mobileTOC.bind();
+      pytorchAnchors.bind();
+      sideMenus.bind();
+      scrollToAnchor.bind();
+      highlightNavigation.bind();
+
+      // Add class to links that have code blocks, since we cannot create links in code blocks
+      $("article.pytorch-article a span.pre").each(function(e) {
+        $(this).closest("a").addClass("has-code");
+      });
+    })
+  </script>
+</body>
+</html>
